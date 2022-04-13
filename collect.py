@@ -15,7 +15,7 @@ hhpub20=pd.read_csv('hhpub20.csv')
 hhpub19=pd.read_csv('hhpub19.csv')
 #%%
 hh_new_names={'H_SEQ':'PH_SEQ'}
-new_names={'A_MJOCC': 'Occupation','WSAL_VAL':'Salary','A_HGA':'Education','PRDTRACE':'Race','A_SEX':'Sex'}
+new_names={'UC_YN': 'Received UIB','UC_VAL':'UIB Amount','A_WKSLK':'Duration of unemployment','NXTRES':'Moving Status','PRDTRACE':'Race','A_SEX':'Sex'}
 
 hhpub21_new=hhpub21[['H_SEQ','GTCBSA']]
 hhpub20_new=hhpub20[['H_SEQ','GTCBSA']]
@@ -31,7 +31,7 @@ hhpub20_new=hhpub20_new.rename(columns=hh_new_names)
 hhpub19_new=hhpub19_new.rename(columns=hh_new_names)
 #%%
 
-stats_list=['PH_SEQ','Sex','Race','Occupation','Salary', 'Education']
+stats_list=['PH_SEQ','Received UIB','UIB Amount','Duration of unemployment','Moving Status', 'Race','Sex']
 
 pppub21=pppub21[stats_list]
 pppub20=pppub20[stats_list]
@@ -46,13 +46,15 @@ pppub20_merged=pppub20.merge(hhpub20_new, on='PH_SEQ', how='right', validate='m:
 pppub19_merged=pppub19.merge(hhpub19_new, on='PH_SEQ', how='right', validate='m:1', indicator=True)
 
 
-
 #%%
 
 pppub_concact_list=[pppub21_merged,pppub20_merged,pppub19_merged]
 concact_full_data=pd.concat(pppub_concact_list)
 
 concact_full_data=concact_full_data.drop(columns='_merge')
+
+concact_full_data=concact_full_data.dropna()
+
 
 
 concact_full_data.to_csv('final_data.csv')
