@@ -56,6 +56,8 @@ concact_full_data=concact_full_data.drop(columns='_merge')
 
 concact_full_data=concact_full_data.dropna()
 
+concact_full_data.to_csv('concact_full_data.csv')
+
 unemployment= concact_full_data['Unempoyment Status']
 
 cbsa= concact_full_data['GTCBSA']
