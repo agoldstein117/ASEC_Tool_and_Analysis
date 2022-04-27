@@ -31,7 +31,6 @@ hh_family_name={'H_SEQ':'FH_SEQ'}
 ff_person_names={'FH_SEQ':'PH_SEQ'}
 
 
-
 hh_to_p21=hhpub21.rename(columns=hh_person_names) 
 hh_to_p20=hhpub20.rename(columns=hh_person_names)
 hh_to_p19=hhpub19.rename(columns=hh_person_names)
@@ -60,44 +59,34 @@ pp_ff_21merge=pppub21.merge(ff_to_p21, on='PH_SEQ', how='left', validate='m:m', 
 pp_ff_20merge=pppub20.merge(ff_to_p20, on='PH_SEQ', how='left', validate='m:m', indicator=True)
 pp_ff_19merge=pppub19.merge(ff_to_p19, on='PH_SEQ', how='left', validate='m:m', indicator=True)
 
-#%%
-pppub21_m1=pppub21.merge(hhpub21, on='PH_SEQ', how='right', validate='m:1', indicator=True)
-pppub20_m1=pppub20.merge(hhpub20, on='PH_SEQ', how='right', validate='m:1', indicator=True)
-pppub19_m1=pppub19.merge(hhpub19, on='PH_SEQ', how='right', validate='m:1', indicator=True)
-
-#%%
-pppub21_m2=pppub21_m1.merge(ffpub21, on='PH_SEQ', how='right', validate='1:m', indicator=True)
-pppub20_m2=pppub20_m1.merge(ffpub20, on='PH_SEQ', how='right', validate='1:m', indicator=True)
-pppub19_m2=pppub19_m1.merge(ffpub19, on='PH_SEQ', how='right', validate='1:m', indicator=True)
-
 
 #%%
 
-pppub_concact_list=[pppub21_merged,pppub20_merged,pppub19_merged]
+pp_hh_concact_list=[pp_hh_21merge,pp_hh_20merge,pp_hh_19merge]
+ff_hh_concact_list=[ff_hh_21merge,ff_hh_20merge,ff_hh_19merge]
+pp_ff_concact_list=[pp_ff_21merge,pp_ff_20merge,pp_ff_19merge]
 
-concact_full_data=pd.concat(pppub_concact_list)
+pp_hh_data=pd.concat(pp_hh_concact_list)
+ff_hh_data=pd.concat(ff_hh_concact_list)
+pp_ff_data=pd.concat(pp_ff_concact_list)
 
-concact_full_data=concact_full_data.drop(columns='_merge')
-
-concact_full_data=concact_full_data.dropna()
-
-concact_full_data.to_csv('concact_full_data.csv')
 #%%
-unemployment= concact_full_data['Unempoyment Status']
 
-cbsa= concact_full_data['GTCBSA']
+pp_hh_data=pp_hh_data.drop(columns='_merge')
+ff_hh_data=ff_hh_data.drop(columns='_merge')
+pp_ff_data=pp_ff_data.drop(columns='_merge')
 
-status_trimmed=concact_full_data.where(unemployment>1,)
+pp_hh_data=pp_hh_data.dropna()
+ff_hh_data=ff_hh_data.dropna()
+pp_ff_data=pp_ff_data.dropna()
+#%%
+pp_hh_data.to_csv('pp_hh_data.csv')
+ff_hh_data.to_csv('ff_hh_data.csv')
+pp_ff_data.to_csv('pp_ff_data.csv')
 
-status_trimmed=status_trimmed.dropna()
+#%%
 
-new_trimmed=status_trimmed.copy() 
-
-status=new_trimmed['Unempoyment Status']
-
-new_trimmed=new_trimmed.where(status>0,)
-
-dups=new_trimmed.duplicated(subset='PH_SEQ', keep=False)
+dups=pp_hh_data.duplicated(subset='PH_SEQ', keep=False)
 #%%
 final_data=new_trimmed.drop_duplicates(subset='PH_SEQ')
 
