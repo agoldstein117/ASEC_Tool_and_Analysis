@@ -42,11 +42,11 @@ pp_hh_data=pd.concat(pp_hh_concact_list)
 pp_hh_data=pp_hh_data.drop(columns='_merge')
 
 
-pp_hh_data_list=['PH_SEQ','PPPOS','GTCBSA','GESTFIPS','GEDIV','PRDTRACE','A_SEX',"A_EXPLF",'A_LFSR']
+pp_hh_data_list=['PH_SEQ','PPPOS','GTCBSA','GESTFIPS','GEDIV','PRDTRACE','A_SEX',"A_EXPLF",'A_LFSR','A_MJOCC']
 
 pp_hh_data=pp_hh_data[pp_hh_data_list]
 
-pp_new_names={'GTCBSA':'CBSA','GESTFIPS':'FIPS','GEDIV':'Region','PRDTRACE':'Race','A_SEX':'Sex',"A_EXPLF":'Unempoyment_Status','A_LFSR':'In_Labor_Force'}
+pp_new_names={'GTCBSA':'CBSA','GESTFIPS':'FIPS','GEDIV':'Region','PRDTRACE':'Race','A_SEX':'Sex',"A_EXPLF":'Unempoyment_Status','A_LFSR':'In_Labor_Force','A_MJOCC':'Occupation_Type'}
 
 pp_hh_data=pp_hh_data.rename(columns=pp_new_names)
 
