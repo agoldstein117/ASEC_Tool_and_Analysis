@@ -6,7 +6,7 @@ Created on Tue Apr 26 22:11:35 2022
 """
 
 import pandas as pd
-import geopandas as gpd
+
 
 hhpub21=pd.read_csv('hhpub21.csv')
 hhpub20=pd.read_csv('hhpub20.csv')

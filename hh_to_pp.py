@@ -6,7 +6,7 @@ Created on Tue Apr 26 22:09:04 2022
 """
 
 import pandas as pd
-import geopandas as gpd
+
 
 pppub21=pd.read_csv('pppub21.csv',dtype=str)
 pppub20=pd.read_csv('pppub20.csv',dtype=str)
@@ -37,26 +37,27 @@ pp_hh_concact_list=[pp_hh_21merge,pp_hh_20merge,pp_hh_19merge]
 pp_hh_data=pd.concat(pp_hh_concact_list)
 
 
-#%%
-
 pp_hh_data=pp_hh_data.drop(columns='_merge')
 
-
-pp_hh_data_list=['PH_SEQ','PPPOS','GTCBSA','GESTFIPS','GEDIV','PRDTRACE','A_SEX',"A_EXPLF",'A_LFSR','A_MJOCC']
+#%%
+pp_hh_data_list=['PH_SEQ','PPPOS','GTCBSA','GESTFIPS','GTCO','GEDIV','PRDTRACE','A_SEX',"A_EXPLF",'A_LFSR','A_MJOCC']
 
 pp_hh_data=pp_hh_data[pp_hh_data_list]
 
-pp_new_names={'GTCBSA':'CBSA','GESTFIPS':'FIPS','GEDIV':'Region','PRDTRACE':'Race','A_SEX':'Sex',"A_EXPLF":'Unempoyment_Status','A_LFSR':'In_Labor_Force','A_MJOCC':'Occupation_Type'}
+pp_new_names={'GTCBSA':'CBSA','GESTFIPS':'FIPS','GTCO':'County','GEDIV':'Region','PRDTRACE':'Race','A_SEX':'Sex',"A_EXPLF":'Unempoyment_Status','A_LFSR':'In_Labor_Force','A_MJOCC':'Occupation_Type'}
 
 pp_hh_data=pp_hh_data.rename(columns=pp_new_names)
 
 pp_hh_data=pp_hh_data.dropna()
-
+#%%
 pp_hh_data['PSID']=pp_hh_data['PH_SEQ']+pp_hh_data['PPPOS']
+
+pp_hh_data['GEOID']=pp_hh_data['FIPS']+pp_hh_data['County']
 
 pp_hh_data=pp_hh_data.drop_duplicates(subset='PSID')
 
 pp_hh_data.set_index('PSID', inplace=True)
+
 
 #%%
 pp_hh_data.to_csv('pp_hh_data.csv')
