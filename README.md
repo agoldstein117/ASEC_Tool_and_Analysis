@@ -1,2 +1,2 @@
 # ASEC_Tool_and_Analysis
-An analysis of unemployment insurance and its effect on housing security
+A tool created to work with the ASEC information from 2019 onward, and an analysis of the quality of data itself.
