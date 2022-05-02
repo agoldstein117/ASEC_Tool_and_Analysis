@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 pp_hh_data=pd.read_csv('pp_hh_data.csv',dtype=str)
 
 #%%
+print('\nPLEASE REFER TO THE FULL DATA FRAME OF EACH SECTION (Denoted by the _df) TO KNOW THE PERCENTAGE OF EACH VARIABLE')
 grouped_cbsa=pp_hh_data.groupby('CBSA').size().sort_values() 
 
 miss_CBSA=pp_hh_data['CBSA'].value_counts()['0']
@@ -21,7 +22,7 @@ prct_miss=(miss_CBSA/total_cbsa)*100
 
 rounded_cbsa=round(prct_miss,2)
 
-print('GEOGRAPHIC INFORMATION:')
+print('\nGEOGRAPHIC INFORMATION:')
 print('\nCBSA Code Information:')
 print(f'About {rounded_cbsa}% of the data has no cbsa codes')
 
@@ -130,7 +131,6 @@ race_df=race_df.rename(columns={0:'Count'})
 race_df['Percentage']=round((race_df['Count']/len(pp_hh_data['Race'])*100),2)
 
 print('\nDEMOGRAPHIC INFORMATION:')
-print('\n',race_df['Percentage'])
 print('\nRacial Information:')
 print(f'About {rounded_w}% of all of the responses are from white only individuals')
 print(f'\nAbout {rounded_nw}% of all of the responses are from non white individuals')
@@ -165,7 +165,6 @@ employ_df['Percentage']=round((employ_df['Count']/len(pp_hh_data['Unempoyment_St
 
 
 print('\nEMPLOYMENT RELATED INFORMATION:')
-print('\n',employ_df['Percentage'])
 print(f'\nAbout {rounded_emply_info}% of all of the responses have employment status information')
 print(f'\nAbout {rounded_emplyoyed}% of all of the responses are employed individuals')
 print(f'\nAbout {rounded_unemplyoyed}% of all of the responses are unemployed individuals')
@@ -179,12 +178,12 @@ occupation_df=grouped_occupation.to_frame()
 occupation_df=occupation_df.rename(columns={0:'Count'})
 occupation_df['Percentage']=round((occupation_df['Count']/len(pp_hh_data['Occupation_Type'])*100),2)
 
-print('\nPercentage Representation by Occupation :')
+print('\nPercentage Representation by Occupation Within the Data:')
 print('\n',occupation_df['Percentage'])
 
 #%%
 fig1, ax1 = plt.subplots(dpi=300)
-fips_df.plot.bar(y='Percentage',fontsize=7,ax=ax1)
+fips_df.plot.bar(y='Percentage',fontsize=7,ax=ax1, legend=False)
 ax1.set_xlabel('FIPS Codes')
 ax1.set_ylabel('Percent of Responses')
 ax1.set_title('Where Are the Responses Coming From?(FIPS Codes)')
@@ -192,7 +191,7 @@ fig1.tight_layout()
 fig1.savefig('fips_figure.png')
 #%%
 fig1, ax1 = plt.subplots(dpi=300)
-county_df.plot.bar(y='Percentage',fontsize=4,ax=ax1)
+county_df.plot.bar(y='Percentage',fontsize=4,ax=ax1, legend=False)
 ax1.set_xlabel('County Codes')
 ax1.set_ylabel('Percent of Responses')
 ax1.set_title('What is Missing)')
@@ -200,7 +199,7 @@ fig1.tight_layout()
 fig1.savefig('county_figure.png')
 #%%
 fig1, ax1 = plt.subplots(dpi=300)
-employ_df.plot.bar(y='Percentage',fontsize=10 ,ax=ax1)
+employ_df.plot.bar(y='Percentage',fontsize=10 ,ax=ax1, legend=False)
 ax1.set_xlabel('Employment Status')
 ax1.set_ylabel('Percent of Responses')
 ax1.set_title('Employment')
@@ -208,7 +207,7 @@ fig1.tight_layout()
 fig1.savefig('Employ_figure.png')
 #%%
 fig1, ax1 = plt.subplots(dpi=300)
-occupation_df.plot.bar(y='Percentage',ax=ax1)
+occupation_df.plot.bar(y='Percentage',ax=ax1, legend=False)
 ax1.set_xlabel('Occupation type')
 ax1.set_ylabel('Percent of Responses')
 ax1.set_title('Employment by Type')
@@ -217,7 +216,7 @@ fig1.savefig('occupation_figure.png')
 
 #%%
 fig1, ax1 = plt.subplots(dpi=300)
-race_df.plot.bar(y='Percentage',fontsize=7,ax=ax1)
+race_df.plot.bar(y='Percentage',fontsize=7,ax=ax1, legend=False)
 ax1.set_xlabel('Race')
 ax1.set_ylabel('Percent of Responses')
 ax1.set_title('Racial Make Up of Responses')

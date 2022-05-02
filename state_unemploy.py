@@ -9,7 +9,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-#%%
 pp_hh_data=pd.read_csv('pp_hh_data.csv',dtype=str)
 
 state_um=pp_hh_data.query("Unempoyment_Status =='2'")
@@ -46,7 +45,7 @@ unemploy_merge['Total']=state_em['Number of Employed']+state_um['Number of Unemp
 unemploy_merge['Unemployment Rate']=round((state_um['Number of Unemployed']/unemploy_merge['Total'])*100,2)
 
 fig, ax1 = plt.subplots(dpi=300)
-unemploy_merge.plot.bar(x='FIPS',y='Unemployment Rate',fontsize=7,ax=ax1)
+unemploy_merge.plot.bar(x='FIPS',y='Unemployment Rate',fontsize=7,ax=ax1, legend=False)
 ax1.set_title("Unemployment Rate by State")
 ax1.set_xlabel("State")
 ax1.set_ylabel("Unemployment Rate")
@@ -77,7 +76,7 @@ occ_unemploy_merge['Total']=occ_em['Number of Employed']+occ_um['Number of Unemp
 occ_unemploy_merge['Unemployment Rate']=round((occ_um['Number of Unemployed']/occ_unemploy_merge['Total'])*100,2)
 #%%
 fig, ax1 = plt.subplots(dpi=300)
-occ_unemploy_merge.plot.bar(x='Occupation_Type',y='Unemployment Rate',fontsize=7,ax=ax1)
+occ_unemploy_merge.plot.bar(x='Occupation_Type',y='Unemployment Rate',fontsize=7,ax=ax1, legend=False)
 ax1.set_title("Unemployment Rate by Occupation")
 ax1.set_xlabel("Occupation Type")
 ax1.set_ylabel("Unemployment Rate")
@@ -119,9 +118,6 @@ um_occ_state=um_occ_state.drop(columns=['Number of Employed','Number of Unemploy
 um_occ_compa=um_occ_state.query("FIPS =='6' or FIPS =='48'")
 um_state_dict={'6':'California','48':'Texas'}
 um_occ_compa['FIPS']=um_occ_compa['FIPS'].replace(um_state_dict)
-
-um_occ_dict={'0':'Not in universe or children ','1':'','2':'','3':'','4':'','5':'','6':'','7':'','8':'','9':'','10':'','11':''}
-
 
 #%%
 fig, ax1 = plt.subplots(dpi=300)
