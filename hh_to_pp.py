@@ -52,6 +52,9 @@ pp_hh_data=pp_hh_data.dropna()
 #%%
 pp_hh_data['PSID']=pp_hh_data['PH_SEQ']+pp_hh_data['PPPOS']
 
+pp_hh_data['County']=pp_hh_data['County'].str.zfill(3)
+#%%
+
 pp_hh_data['GEOID']=pp_hh_data['FIPS']+pp_hh_data['County']
 
 pp_hh_data=pp_hh_data.drop_duplicates(subset='PSID')

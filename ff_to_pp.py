@@ -7,13 +7,13 @@ Created on Tue Apr 26 22:13:43 2022
 import pandas as pd
 
 
-pppub21=pd.read_csv('pppub21.csv')
-pppub20=pd.read_csv('pppub20.csv')
-pppub19=pd.read_csv('pppub19.csv')
+pppub21=pd.read_csv('pppub21.csv',dtype=str)
+pppub20=pd.read_csv('pppub20.csv',dtype=str)
+pppub19=pd.read_csv('pppub19.csv',dtype=str)
 
-ffpub21=pd.read_csv('ffpub21.csv')
-ffpub20=pd.read_csv('ffpub20.csv')
-ffpub19=pd.read_csv('ffpub19.csv')
+ffpub21=pd.read_csv('ffpub21.csv',dtype=str)
+ffpub20=pd.read_csv('ffpub20.csv',dtype=str)
+ffpub19=pd.read_csv('ffpub19.csv',dtype=str)
 #%%
 ff_person_names={'FH_SEQ':'PH_SEQ'}
 
@@ -37,18 +37,21 @@ pp_ff_data=pd.concat(pp_ff_concact_list)
 #%%
 pp_ff_data=pp_ff_data.drop(columns='_merge')
 
-
-pp_ff_data_list=['PH_SEQ','PPPOS','PRDTRACE','A_SEX']
+pp_ff_data_list=['PH_SEQ','PPPOS','GTCBSA','GESTFIPS','GTCO','PRDTRACE','A_SEX']
 
 pp_ff_data=pp_ff_data[pp_ff_data_list]
+#%%
 
 ff_new_names={'PRDTRACE':'Race','A_SEX':'Sex'}
 
 pp_ff_data=pp_ff_data.rename(columns=ff_new_names)
 
 pp_ff_data=pp_ff_data.dropna()
-
+#%%
 pp_ff_data['PSID']=pp_ff_data['PH_SEQ']+pp_ff_data['PPPOS']
+
+#%%
+
 
 pp_ff_data=pp_ff_data.drop_duplicates(subset='PSID')
 

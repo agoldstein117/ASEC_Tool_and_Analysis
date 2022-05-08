@@ -15,7 +15,7 @@ pp_hh_data=pd.read_csv('pp_hh_data.csv',dtype=str)
 print('\nPLEASE REFER TO THE FULL DATA FRAME OF EACH SECTION (Denoted by the _df) TO KNOW THE PERCENTAGE OF EACH VARIABLE')
 grouped_cbsa=pp_hh_data.groupby('CBSA').size().sort_values() 
 
-miss_CBSA=pp_hh_data['CBSA'].value_counts()['0']
+miss_CBSA=pp_hh_data['CBSA'].value_counts()['000']
 total_cbsa=len(pp_hh_data['CBSA'])
 
 prct_miss=(miss_CBSA/total_cbsa)*100

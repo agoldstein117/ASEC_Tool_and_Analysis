@@ -8,13 +8,13 @@ Created on Tue Apr 26 22:11:35 2022
 import pandas as pd
 
 
-hhpub21=pd.read_csv('hhpub21.csv')
-hhpub20=pd.read_csv('hhpub20.csv')
-hhpub19=pd.read_csv('hhpub19.csv')
+hhpub21=pd.read_csv('hhpub21.csv',dtype=str)
+hhpub20=pd.read_csv('hhpub20.csv',dtype=str)
+hhpub19=pd.read_csv('hhpub19.csv',dtype=str)
 
-ffpub21=pd.read_csv('ffpub21.csv')
-ffpub20=pd.read_csv('ffpub20.csv')
-ffpub19=pd.read_csv('ffpub19.csv')
+ffpub21=pd.read_csv('ffpub21.csv',dtype=str)
+ffpub20=pd.read_csv('ffpub20.csv',dtype=str)
+ffpub19=pd.read_csv('ffpub19.csv',dtype=str)
 #%%
 
 hh_family_name={'H_SEQ':'FH_SEQ'}
@@ -40,74 +40,28 @@ ff_hh_data=pd.concat(ff_hh_concact_list)
 
 ff_hh_data=ff_hh_data.drop(columns='_merge')
 
-ff_hh_data_list=['GTCBSA','GESTFIPS']
+ff_hh_data_list=['GTCBSA','GESTFIPS','GTCO','FH_SEQ','FFPOS']
 
 ff_hh_data=ff_hh_data[ff_hh_data_list]
 
-ff_new_names={'GTCBSA':'CBSA','GESTFIPS':'FIPS'}
+ff_new_names={'GTCBSA':'CBSA','GESTFIPS':'FIPS','GTCO':'County'}
 
 ff_hh_data=ff_hh_data.rename(columns=ff_new_names)
 
 ff_hh_data=ff_hh_data.dropna()
 
 #%%
-pp_hh_data['PSID']=pp_hh_data['PH_SEQ']+pp_hh_data['PPPOS']
+ff_hh_data['FHID']=ff_hh_data['FH_SEQ']+ff_hh_data['FFPOS']
 
-pp_hh_data=pp_hh_data.drop_duplicates(subset='PSID')
+ff_hh_data.set_index('FHID', inplace=True)
 
-pp_hh_data.set_index('PSID', inplace=True)
-
-#%%
-pp_hh_data.to_csv('pp_hh_data.csv')
+ff_hh_data['County']=ff_hh_data['County'].str.zfill(3)
 
 #%%
 
-ff_hh_data=ff_hh_data.drop(columns='_merge')
+ff_hh_data['GEOID']=ff_hh_data['FIPS']+ff_hh_data['County']
 
-ff_hh_data=ff_hh_data.dropna()
-
+ff_hh_data=ff_hh_data.drop_duplicates(subset='FHID')
 #%%
-
 ff_hh_data.to_csv('ff_hh_data.csv')
-
-
-#%%
-
-dups=pp_hh_data.duplicated(subset='PH_SEQ', keep=False)
-#%%
-final_data=new_trimmed.drop_duplicates(subset='PH_SEQ')
-
-grouped=final_data.groupby('GTCBSA').size().sort_values() 
-
-print(grouped) 
-
-
-#%%
-
-moving_grouped=final_data.groupby('Moving Status').size().sort_values()
-
-print(moving_grouped) 
-
-
-print('\n',new_trimmed['Received UIB'].value_counts()) 
-
-final_data.to_csv('final_data.csv')
-#%%
-
-avg_ui_list=['Received UIB','UIB Amount','GTCBSA']
-avg_ui=final_data[avg_ui_list]
-r_ui=avg_ui['Received UIB']
-avg_ui=avg_ui.where(r_ui<2,)
-avg_ui=avg_ui.dropna()
-avg_ui_amount=avg_ui.drop(columns='Received UIB')
-avg_ui_group=avg_ui_amount.groupby('GTCBSA').sum()
-#%%
-numbr_avg_ui_group=avg_ui_amount.groupby('GTCBSA').count()
-
-avg_amount_ui=avg_ui_group/numbr_avg_ui_group 
-
-rounded_amounts=round(avg_amount_ui,)
-
-print('\n',rounded_amounts) 
-
 
