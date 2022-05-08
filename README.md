@@ -42,6 +42,34 @@ Most of these steps can be repeated for the other scripts' ff_to_pp.py', and 'hh
 
 ### An Analysis
 
+Before any data should be used for analysis, it is good to know where the information is from, how best to use it, and if there are any holes. The script 'quality_analysis' was designed to assist individuals with this endeavor. The script allows individuals to know how many entries are in the chosen variables. Using the data from 'pp_hh_data' I demonstrate how this script can be used. While this script provides good insight into the data from the ASEC, the relative same process was used for each variable, so it is easy for others to use for other variables that may not have been included.
+
+The first step that this script does is it groups the data by the variable in question and then counts the number of individuals who have the same values for each survey response. For example, in the first cell, a new series was created 'grouped_cbsa' where the data frame 'pp_hh_data' was grouped by the 'CBSA' variable. Then the functions .size().sort_values() was used to show which survey answer had the most amount of entries. 
+
+Going to the Variable explorer and clicking on the data frame 'grouped_cbsa' will display how many individuals are located in each CBSA code. To let others know what percentage of the CBSA codes are missing from individuals, I created the variable miss_CBSA, which is equal to the value counts of 0 in the CBSA column. When an entry is missing, the ASEC typically puts 0 as an individual's response. To find the percentage, I divided 'miss_CBSA' by 'total_cbsa' which is the length of all the entries within the CSBA column, and then I multiplied the result by 100. I set this to the variable 'prct_miss' which I then rounded to the 2nd decimal place and printed the results. When the function runs, it will show what percent of all of the entries in the data frame have missing CBSA data which is about, 24.2%.
+
+To show the percentages of how many respondents are from each CBSA, I turned the series' grouped_cbsa' into the data frame 'cbsa_df' using the to_frame() function. I then renamed the column with all of the value count numbers with the column name 'Count'. Then I created the column 'Percentage' in the 'cbsa_df' to show the individual percentage following the same formula for how I found the missing entries. If an individual were to wish to know how many entries are from each CBSA all they would have to do is click on the 'cbsa_df' in the Variable Explorer.
+
+I repeated this step multiple times for various variables, finding the percentages for each one. However, I highlighted some of the results to understand where there may be bias in the ASEC data. The results of these findings show:
+
+Regional Information:
+* While 100% of the data has FIPS code information, 58.08% of the entries have no county code information. Including the 24.2% of missing CBSA data the information from the ASEC is not terribly suitable for mapping. Results from mapping the information may not be as informative as one would hope.
+* Looking into the regions of where the respondents live about 18.29% of the entries are located in the South Atlantic Region, 16.08% located in the Pacific Region, and 12.73% are located in the Mountain Region.
+* Looking into the FIPS codes  of where the respondents live about 9.5% of the entries have a Californian FIPS code, 6.18% of the FIPS codes are Texan, and 4.55% of the FIPS codes are Floridian.
+
+Racial Information:
+* Going into the demographic information of the about 76.63% of all of the responses are from White only individuals. 
+* About 23.37% of all of the responses are from Non White individuals, about 11.71% of all responses are from Black only individuals, and about 6.51% of the responses are from Asian only individuals.
+
+Employment Information:
+* 42.78% of all of the responses are from employed individuals.
+* Only 2.47% of all of the responses are unemployed individuals.
+
+Occupation Type:
+*10.69% of the respondents have a job in the professional and related field.
+*7.91% have a management, business, or financial related occupation
+*7.88% have a service based career.
+
 
 
 =======
