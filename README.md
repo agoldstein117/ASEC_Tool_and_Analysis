@@ -1,7 +1,7 @@
 # ASEC_Tool_and_Analysis
 <<<<<<< HEAD
 
-##Summary 
+## Summary 
 
 The goal of this project was to create a tool that others could use for future projects relating to the Census Bureau's Annual Social and Economic Supplements (ASEC). The ASEC provides survey answers from hundreds of thousands of individuals within the US. The ASEC collects information from 245k unique individuals on topics relating to their work, income, noncash benefits, migration, demographics, and other related topics. The ASEC contains over 900 different variables available to use for a wide variety of analyses. Until 2019, the Census Bureau provided this data in CSV form, making it more easily usable for python-based projects. The information is categorized into three distinct CSVs personal, family, and household.
 
@@ -17,12 +17,12 @@ There are two essential components a user must have before they can work with th
 
 Once you have completed that, you can place the CSV(s) you wish to work within this repository and start working with the data; happy coding!
 
-##An Explanation on How to Use the Tool, an Analysis, and a Demonstration
+## An Explanation on How to Use the Tool, an Analysis, and a Demonstration
 
-###Overview
+### Overview
 Since the data merging scripts are relatively similar, I will be using the script 'hh_to_pp.py' to demonstrate how to use the tool. Following that, I will be using the information created by this script in a following script 'quality_analysis.py' to show where there may be holes within the data provided by the ASEC and to show others how they can check to see if their data may be lacking if they wish to use it. Finally, I will go through a third script, 'state_unemployment.py', which is a demonstration of how to use the information; in this instance, it is to show unemployment by state and occupation and how unemployment by occupation differs from state to state.
 
-###How to Use the Tool
+### How to Use the Tool
 
 Using the 'hh_to_pp.py' script, ensure you have downloaded the respective pppub and hhpub CSVs with the years you wish to use. The code has all three years, so it can be modified to work with any of the currently published years. It is heavily recommended that you run the code CELL BY CELL instead of all at once to make the process easier on your computer. The variables pppub21,pppub20, and pppub19 contain the information from the respective personal CSV files, and hhpub21-hhpub19 do the same for the household information.
 
@@ -40,7 +40,7 @@ Finally, I set the 'PSID' as the index for the data frame for ease of identifica
 
 Most of these steps can be repeated for the other scripts' ff_to_pp.py', and 'hh_to_ff.py', with slight modifications. Since there is no geographic-related data in the families or personal CSVs, you cannot use variables relating to CBSA, FIPS, or County codes. In the script 'ff_to_pp.py' this was distinctly left out of the variable list. Since there are no personal ID numbers in the household or family CSVs, variables' PH_SEQ' and 'PPPOS' were left out. Instead, what is used for the merge in this script 'FH_SEQ' after the 'H_SEQ' was renamed to 'FH_SEQ', much like 'H_SEQ' was renamed to 'PH_SEQ'.
 
-###An Analysis
+### An Analysis
 
 
 =======
