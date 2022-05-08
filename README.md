@@ -24,7 +24,7 @@ Since the data merging scripts are relatively similar, I will be using the scrip
 
 ### How to Use the Tool
 
-Using the 'hh_to_pp.py' script, ensure you have downloaded the respective pppub and hhpub CSVs with the years you wish to use. The code has all three years, so it can be modified to work with any of the currently published years. It is heavily recommended that you run the code CELL BY CELL instead of all at once to make the process easier on your computer. The variables pppub21,pppub20, and pppub19 contain the information from the respective personal CSV files, and hhpub21-hhpub19 do the same for the household information.
+Using the 'hh_to_pp.py' script, ensure you have downloaded the respective pppub and hhpub CSVs with the years you wish to use. The code has all three years, so it can be modified to work with any of the currently published years. It is heavily recommended that you run the code CELL BY CELL instead of all at once to make the process easier on your computer. Be sure when you read the information into a data frame using pd.read_csv that the dtype is str as the scripts will not work if it is in int or float format. If you wish to work with ints or floats I would suggest converting certain columns into that dtype. The variables pppub21,pppub20, and pppub19 contain the information from the respective personal CSV files, and hhpub21-hhpub19 do the same for the household information.
 
 The dictionary hh_person_names is necessary because the H_SEQ variable and PH_SEQ are the same value in both the pppub and hhpub CSVs; this is how individuals are tied to specific households within the data. We have to rename H_SEQ to PH_SEQ because we will merge the household data with personal data. This way, we can now tie location data to individuals. I used a left join for this process because we want to work with personal data as it has the more descriptive information we are interested in. Additionally, personal data has more variables to work with than households or family. It is also easier to work with personal data when looking for a more robust analysis.  
 
@@ -69,6 +69,16 @@ Occupation Type:
 * 10.69% of the respondents have a job in the professional and related field.
 * 7.91% have a management, business, or financial related occupation
 * 7.88% have a service based career.
+
+To find a more in-depth understanding if you were to go into any of the data frames in this script that are denoted by the variable name followed by _df it will give you a better glimpse at the data.
+
+Near the end of the script, there are cells where someone can graph the percentages of each variable. This is to show a more visual representation of the data to show where there is a possibility of selection bias occurring within the data. These figures can be easily changed to suit the need of the user.
+
+I will be going over the graph saved as 'fips_figure.png' as an example. The graph uses the fips_df with the y equal to the percentage column, a font size of 7, and with the legend set to false. This is to show the percentage of responses by state. One could easily change the source of information by changing fips_df to another data frame with descriptive details of another variable made previously in the script. The graph has a dpi of 300 and a tight layout to ensure easy visibility.
+
+This script was used to show the descriptive information within the personal file, but it can be modeled in a way that works for any of the other information provided by the ASEC.
+
+### A Demonstration
 
 
 
