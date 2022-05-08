@@ -1,4 +1,5 @@
 # ASEC_Tool_and_Analysis
+<<<<<<< HEAD
 
 ##Summary 
 
@@ -9,3 +10,6 @@ The personal CSV relates to a singular respondent’s personal information. This
 ## Where to Find the Data
 
 In order to 
+=======
+A tool created to work with the ASEC information from 2019 onward, and an analysis of the quality of data itself.
+>>>>>>> faf7acbd224d596d57ecf526f41ec0c607b4af5e
