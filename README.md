@@ -66,9 +66,9 @@ Employment Information:
 * Only 2.47% of all of the responses are unemployed individuals.
 
 Occupation Type:
-*10.69% of the respondents have a job in the professional and related field.
-*7.91% have a management, business, or financial related occupation
-*7.88% have a service based career.
+* 10.69% of the respondents have a job in the professional and related field.
+* 7.91% have a management, business, or financial related occupation
+* 7.88% have a service based career.
 
 
 
