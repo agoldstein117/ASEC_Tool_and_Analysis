@@ -80,6 +80,19 @@ This script was used to show the descriptive information within the personal fil
 
 ### A Demonstration
 
+As seen above, the information from the ASEC is not the best for mapping. To best showcase the data of the ASEC, I would suggest analysis through other means, either through regression or graphs.
+
+To demonstrate this, I will show Unemployment by Occupation and Unemployment by State; then, I will show how Unemployment by Occupation differs between States.  
+
+Using the data from 'pp_hh_data' since we only need information from those who we unemployed, I set the variable 'state_um' equal to a query where "Unempoyment_Status ==' 2'". Then I grouped this information by 'FIPS' and sorted the values by the number of entries in each FIPS. I then created a data frame from this series and renamed the column with the necessary information to 'Number of Unemployed'. I then reset the index to make it easier to work with for future calculations. I then repeated these same actions, except I got the information from employed individuals by setting the query to "Unempoyment_Status ==' 1'". This new data frame with all the information of those who were employed by the state is denoted by the variable 'state_em'.
+
+I then merged the data frames' state_em' and 'state_um' into the data frame 'unemploy_merge' because I will need to know the total number of employed for each state. I dropped the merge indicator for 'unemploy_merge', because I do not need it. I then created the 'Total' column within the data frame 'unemploy_merge', which concatenates 'Number of Employed' and the "Number of Unemployed'. I then found the percentages of unemployed for each state by dividing 'Number of Unemployed' by 'Total', multiplying it by 100, and rounding it to the second decimal place.
+
+From the results I made the graph 'f1_state_unem.png' which shows the Unemployment Rate by State
+![alt text]( 'f1_state_unem.png')
+
+I then repeated the same steps for Occupation Type and produced the graph that shows Unemployment by Occupation type
+![alt text]( 'f1_occ_unem.png')
 
 
 =======
