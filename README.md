@@ -107,6 +107,7 @@ Since there is too much information to graph, I decided to choose two states to 
 Here are the results of this analysis
 
 Occupation Type:
+
 1 = Management, business, and financial occupations          
 2 = Professional and related occupations          
 3 = Service occupations          
