@@ -88,13 +88,40 @@ Using the data from 'pp_hh_data' since we only need information from those who w
 
 I then merged the data frames' state_em' and 'state_um' into the data frame 'unemploy_merge' because I will need to know the total number of employed for each state. I dropped the merge indicator for 'unemploy_merge', because I do not need it. I then created the 'Total' column within the data frame 'unemploy_merge', which concatenates 'Number of Employed' and the "Number of Unemployed'. I then found the percentages of unemployed for each state by dividing 'Number of Unemployed' by 'Total', multiplying it by 100, and rounding it to the second decimal place.
 
-From the results I made the graph 'f1_state_unem.png' which shows the Unemployment Rate by State
+From the results I made the graph 'f1_state_unem.png' which shows the Unemployment Rate by State:
+
 ![alt text](https://github.com/agoldstein117/ASEC_Tool_and_Analysis/blob/main/f1_state_unem.png)
 
-I then repeated the same steps for Occupation Type and produced the graph that shows Unemployment by Occupation type
+I then repeated the same steps for Occupation Type and produced the graph that shows Unemployment by Occupation type:
+
 ![alt text](https://github.com/agoldstein117/ASEC_Tool_and_Analysis/blob/main/f1_occ_unem.png)
 
+Looking at the graph, we can see that the two states with the highest Unemployment were California and Texas. For Occupations, the two Occupation Types with the highest levels of Unemployment were transportation and material moving occupations and construction and extraction occupations. To determine the Unemployment Rate by Occupation Type within States, I first created a new data frame that only had unemployed individuals. I did this by setting data frame 'geo_um' to a query with "Unempoyment_Status ==' 2'". I then grouped the information within 'geo_um' by 'FIPS' and 'Occupation_Type'. 
 
+I followed the same methods as I preciously did to make the data frame 'geo_um_df' which contains the unemployment information by occupation type. Then I followed the same steps, except I worked with information of employed individuals by using data frame 'geo_em' set to a query where "Unempoyment_Status ==' 1'". I then created another data frame, 'geo_em_df', which grouped the information by 'FIPS' and 'Occupation_Type'. 
+
+Following this I then merged the data frames ‘geo_em_df’ and ‘geo_um_df’, using an inner merge and merged left on ['FIPS','Occupation_Type'] and right on ['FIPS','Occupation_Type'].From there I performed the same tasks I did to get the previous 'Total' and 'Percentage' columns from the earlier data frames. After calculating the Unemployment Rate by Occupation Type by State, I dropped columns' Number of Employed', 'Number of Unemployed', and 'Total' as I did not need them anymore. The final data frame with all of this information was 'um_occ_state'.
+
+Since there is too much information to graph, I decided to choose two states to showcase the differences. I chose California and Texas as these two had some of the highest unemployment rates and have some of the most responses within the data itself, which is what we learned from the previous analysis. I created a new data frame using a query where "FIPS ==' 6' or FIPS ==' 48'" to get only California and Texas data. Then I renamed the FIPS codes for these states to their names using the dictionary 'um_state_dict' and using the replace function. I finally graphed the information using a seaborn bar plot where x was the Occupation Type, y was the Unemployment Rate, and FIPS was the Hue. I set the graph to a 300 dpi and a tight layout for the best visual quality and saved the figure as 'f1_compa.png'.
+
+Here are the results of this analysis
+
+Occupation Type:
+1 = Management, business, and financial occupations          
+2 = Professional and related occupations          
+3 = Service occupations          
+4 = Sales and related occupations          
+5 = Office and administrative support occupations          
+6 = Farming, fishing, and forestry occupations          
+7 = Construction and extraction occupations          
+8 = Installation, maintenance, and repair occupations          
+9 = Production occupations         
+10 = Transportation and material moving occupations         
+11 = Armed Forces
+
+![alt text](https://github.com/agoldstein117/ASEC_Tool_and_Analysis/blob/main/f1_compa.png)
+
+We can see that California had higher instances of Unemployment for farming, fishing, forestry, and service occupations. In contrast, Texas had higher Unemployment Rates for construction, extraction, transportation, and material moving occupations.
 =======
 A tool created to work with the ASEC information from 2019 onward, and an analysis of the quality of data itself.
 >>>>>>> faf7acbd224d596d57ecf526f41ec0c607b4af5e
