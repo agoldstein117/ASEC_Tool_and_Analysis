@@ -38,7 +38,7 @@ I finally dropped any duplicate 'PSID' numbers from the data frame so that we ca
 
 Finally, I set the 'PSID' as the index for the data frame for ease of identification, and then the script turns the 'pp_hh_data' data frame into a CSV.
 
-Most of these steps can be repeated for the other scripts' ff_to_pp.py', and 'hh_to_ff.py', with slight modifications. Since there is no geographic-related data in the families or personal CSVs, you cannot use variables relating to CBSA, FIPS, or County codes. In the script 'ff_to_pp.py' this was distinctly left out of the variable list. Since there are no personal ID numbers in the household or family CSVs, variables' PH_SEQ' and 'PPPOS' were left out. Instead, what is used for the merge in this script 'FH_SEQ' after the 'H_SEQ' was renamed to 'FH_SEQ', much like 'H_SEQ' was renamed to 'PH_SEQ'.
+Most of these steps can be repeated for the other scripts' ff_to_pp.py', and 'hh_to_ff.py', with slight modifications. Since there is no geographic-related data in the families or personal CSVs, you cannot use variables relating to CBSA, FIPS, or County codes. In the script 'ff_to_pp.py' this was distinctly left out of the variable list. Since there are no personal ID numbers in the household or family CSVs, variables' PH_SEQ' and 'PPPOS' were left out. Instead, what is used for the merge in this script 'FH_SEQ' after the 'H_SEQ' was renamed to 'FH_SEQ', much like 'H_SEQ' was renamed to 'PH_SEQ'. Finally in the script 'ff_to_pp.py' since there is too much information to merge all at once there are two lists for variables to be chosen from the personal and family CSVs. By modifying these lists you can choose the specific variables you wish to work with from both data sets.
 
 ### An Analysis
 
