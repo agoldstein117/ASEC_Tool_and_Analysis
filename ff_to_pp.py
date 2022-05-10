@@ -44,7 +44,7 @@ pp_ff_data=pp_ff_data.drop(columns='_merge')
 pp_ff_data_list=['PH_SEQ','PPPOS','GTCBSA','GESTFIPS','GTCO','PRDTRACE','A_SEX']
 
 pp_ff_data=pp_ff_data[pp_ff_data_list]
-#This is the section where variables are chose from the whole data set, so that we don't have to work with all of the information.
+#This is the section where variables are chosen from the whole data set, so that we don't have to work with all of the information.
 #%%
 
 ff_new_names={'PRDTRACE':'Race','A_SEX':'Sex'}

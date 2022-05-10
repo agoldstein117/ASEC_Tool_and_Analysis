@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 pp_hh_data=pd.read_csv('pp_hh_data.csv',dtype=str)
 
-#I imported pandas and matplot because this analysis uses graphs and data frame.
+#I imported pandas and matplot because this analysis uses graphs and data frames.
 #The information is also imported as a string to make it easier to manage
 #The 'pp_hh_data.csv' is used for the analysis because it best demonstrates what is in the ASEC
 #%%
@@ -33,7 +33,7 @@ cbsa_df=grouped_cbsa.to_frame()
 cbsa_df=cbsa_df.rename(columns={0:'Count'})
 cbsa_df['Percentage']=round((cbsa_df['Count']/len(pp_hh_data['CBSA'])*100),2)
 
-#All of these analyses follow roughly the same principles. First the data is grouped by the variable choses for analysis
+#All of these analyses follow roughly the same principles. First the data is grouped by the variable chosen for analysis
 # turning it into a series, then it is turned into a data frame. This way the information can then be turned into a graph if desired.
 #For the CBSA variable miss_CBSA is set to pp_hh_data['CBSA'].value_counts()['0'] so we can find the number of missing CBSA codes in the information.
 #Then the total number of CBSA codes are determined with total_cbsa=len(pp_hh_data['CBSA']) so we can find the percentage.
@@ -70,7 +70,7 @@ fips_df=grouped_fips.to_frame()
 fips_df=fips_df.rename(columns={0:'Count'})
 fips_df['Percentage']=round((fips_df['Count']/len(pp_hh_data['FIPS'])*100),2)
 
-#for this analysis it analyzes what percent the top 3 FIPS codes are of the total number of entries and displays them for the user.
+#for this analysis, it analyzes the percent of the top 3 FIPS codes of the total number of entries and displays them for the user.
 #this is why the variable most_fips_pct was  set to pp_hh_data['FIPS'].value_counts()['6'] to show the number of Californian FIPS codes in the ASEC data.
 #The same concept was used for the other variables as well.
 #%%
@@ -191,7 +191,7 @@ print(f'\nAbout {rounded_emplyoyed}% of all of the responses are employed indivi
 print(f'\nAbout {rounded_unemplyoyed}% of all of the responses are unemployed individuals')
 print(f'\nThe unemployment rate according to the data is {unemployment_rate}%')
 
-#This analysis was done to show how many people were employed and unemployed. It also showed what percent of the information had employment information of individuals at all.
+#This analysis was done to show how many people were employed and unemployed. It also showed what percent of the information had individuals' employment information.
 #By setting na_employ to pp_hh_data['Unempoyment_Status'].value_counts()['0'] I was able to determine the percent of missing employment data within the ASEC.
 #%%
 grouped_occupation=pp_hh_data.groupby('Occupation_Type').size().sort_values() 
@@ -214,7 +214,7 @@ fig1.tight_layout()
 fig1.savefig('fips_figure.png')
 
 #the purpose of these graphs was to show visually where there are disparities in the data. They all follow the same principles as each other.
-#A user would only need to slightly edit to show the variable they wanted to analyze visually.
+#A user would only need to slightly edit to visually show the variable they wanted to analyze.
 #I do suggest leaving the legend false to make it more visually appealing, which is why I set legend=False
 #%%
 fig1, ax1 = plt.subplots(dpi=300)

@@ -55,7 +55,7 @@ pp_hh_data=pp_hh_data.rename(columns=pp_new_names)
 
 pp_hh_data=pp_hh_data.dropna()
 
-#This is the section where variables are chose from the whole data set, so that we don't have to work with all of the information.
+#This is the section where variables are chosen from the whole data set, so that we don't have to work with all of the information.
 #The list is how the variables are chosen and the dictionary is there in case users want to rename the variables.
 #the .dropna() is there to get rid of rows with missing information since that means there wasn’t an individual in the personal information CSV with the specific household information
 #%%

@@ -24,8 +24,8 @@ state_um=state_um.reset_index()
 #The information is also imported as a string to make it easier to manage
 #The 'pp_hh_data.csv' is used for the analysis because it best demonstrates what is in the ASEC
 #Since we want to find the unemployment rate for the states state_um was set to pp_hh_data.query("Unempoyment_Status =='2'")
-#We then group this information by FIPS which will give use the number of unemployed individuals by state, and I used .size().sort_values() to show the number of individuals in each state
-#who are unemployed. Finally I rename the column for better reference, and I make this series into a data frame to make it easier to use analysis wise.
+#We then group this information by FIPS which will give us the number of unemployed individuals by state, and I used .size().sort_values() to show the number of individuals in each state
+#who are unemployed. Finally I renamed the column for better reference, and I make this series into a data frame to make it easier to use analysis wise.
 #%%
 
 pp_hh_data=pd.read_csv('pp_hh_data.csv',dtype=str)
@@ -58,7 +58,7 @@ fig.savefig('f1_state_unem.png')
 
 #I merged the information because I want to find the total of individuals so I can later divide the number of unemployed by the total to find the unemployment rate by state.
 #I accomplish this through making a new column unemploy_merge['Unemployment Rate'] and setting it equal to round((state_um['Number of Unemployed']/unemploy_merge['Total'])*100,2).
-#The results are then graphed with matplot to give a visual representation of the unemployment rate by state.
+#The results are then graphed with matplot to represent the unemployment rate by state visually.
 #%%
 
 occ_um=pp_hh_data.query("Unempoyment_Status =='2'")
@@ -92,7 +92,7 @@ ax1.set_xlabel("Occupation Type")
 ax1.set_ylabel("Unemployment Rate")
 fig.savefig('f1_occ_unem.png')
 
-#I graph the unemployment rate for occupation to show which occupation types had the highest levels of unemployment.
+#I graph the unemployment rate by occupation to show which occupation types had the highest levels of unemployment.
 
 #%%
 
@@ -129,8 +129,8 @@ um_occ_state=um_occ_state.drop(columns=['Number of Employed','Number of Unemploy
 
 #Now to show how the variation of unemployment by occupation changes from state to state, I start by only working with unemployed individuals.
 #I then group the informaiton by both 'FIPS','Occupation_Type' but I also find the .size() and .sort_values().
-#I had to sort by FIPs to better group the information by state and I had to reset the index for the analysis to work.
-#I then found the number of employed individuals so I could once again find the total.
+#I had to sort by FIPs to group the information by state better, and I had to reset the index for the analysis to work.
+#I then found the number of employed individuals to find the total once again.
 #I merged the two data sets so I could find the total and then the percent of unemployed by occupation by state that I needed. 
 #I then dropped the 'Number of Employed','Number of Unemployed','Total' because they aren't needed for graphing.
 #%%
@@ -138,7 +138,7 @@ um_occ_compa=um_occ_state.query("FIPS =='6' or FIPS =='48'")
 um_state_dict={'6':'California','48':'Texas'}
 um_occ_compa['FIPS']=um_occ_compa['FIPS'].replace(um_state_dict)
 
-#by using a query I could then compare any states I wished to each other to determine their differences. I only used 2 because more than that would crowed the image too much.
+#by using a query I could then compare any states I wished to each other to determine their differences. I only used two because more than that would crowd the image too much.
 #I used a list to show the states names as it is more visually appealing.
 #%%
 fig, ax1 = plt.subplots(dpi=300)
