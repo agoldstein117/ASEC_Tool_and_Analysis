@@ -60,22 +60,21 @@ ff_hh_data=ff_hh_data.dropna()
 #%%
 ff_hh_data['FHID']=ff_hh_data['FH_SEQ']+ff_hh_data['FFPOS']
 
-ff_hh_data.set_index('FHID', inplace=True)
+ff_hh_data=ff_hh_data.drop_duplicates(subset='FHID')
 
 ff_hh_data['County']=ff_hh_data['County'].str.zfill(3)
 
 #ff_hh_data['FHID'] was done to identify unique families within the information for better tracking purposes
 #ff_hh_data['County'] was created because the County information was not properly put into the CSV from the ASEC, so this fixes this mistake
-#The FHID was set as an index to make it easier to keep track of the information
+#Duplicate FHIDs were dropped because the information is from 2019-2021 and there could be instances where we have the same individual from multiple years.
 #%%
 
 ff_hh_data['GEOID']=ff_hh_data['FIPS']+ff_hh_data['County']
 
-ff_hh_data=ff_hh_data.drop_duplicates(subset='FHID')
+ff_hh_data.set_index('FHID', inplace=True)
 
 #GEOID was created in case users wanted to map the data in the merged file
-#Duplicate FHIDs were dropped because the information is from 2019-2021 and there could be instances where we have the same individual from multiple years.
-
+#The FHID was set as an index to make it easier to keep track of the information
 #%%
 ff_hh_data.to_csv('ff_hh_data.csv')
 #Now we have a csv to work with for analysis in the other scripts, or for other uses in the future.
