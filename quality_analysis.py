@@ -213,9 +213,9 @@ ax1.set_title('Where Are the Responses Coming From?(FIPS Codes)')
 fig1.tight_layout()
 fig1.savefig('fips_figure.png')
 
-#the purpose of these graphs was to show visually where there are disparities in the data. They all follow the same priciple as each other.
+#the purpose of these graphs was to show visually where there are disparities in the data. They all follow the same principles as each other.
 #A user would only need to slightly edit to show the variable they wanted to analyze visually.
-#I do suggest leaving the legend fale to make it more visually appealing, which is why I set legend=False
+#I do suggest leaving the legend false to make it more visually appealing, which is why I set legend=False
 #%%
 fig1, ax1 = plt.subplots(dpi=300)
 county_df.plot.bar(y='Percentage',fontsize=4,ax=ax1, legend=False)
