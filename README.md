@@ -1,5 +1,5 @@
 # ASEC_Tool_and_Analysis
-<<<<<<< HEAD
+
 
 ## Summary 
 
@@ -129,6 +129,4 @@ We can see that California had higher instances of Unemployment for farming, fis
 
 Now that you know where to find the ASEC data and use this tool to work with and analyze the ASEC data efficiently, you should be able to proceed with your own analysis projects more easily. Happy Coding!
 
-=======
-A tool created to work with the ASEC information from 2019 onward, and an analysis of the quality of data itself.
->>>>>>> faf7acbd224d596d57ecf526f41ec0c607b4af5e
+
